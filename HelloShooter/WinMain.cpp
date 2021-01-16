@@ -54,6 +54,7 @@ void GameLoopStart(float deltaTime)
 	float textSize = 24.0f;
 	float textSize1 = 64.0f;
 	// print the header
+	X::DrawScreenText("SPACE SHOOTER \n", xPos-10.0f, yPos - 100.0f, 50, X::Math::Vector4(0.50f, 0.5, 0.0f, 1.0f));
 	X::DrawScreenText("Start Game(Press Y) \n Quit (Press Esc)", xPos-10.0f, yPos, textSize, X::Math::Vector4(0.50f, 1.0f, 0.0f, 1.0f));
 	X::DrawScreenText("Info:\n Level 1: \n Enemy health = 2\n Kill Count under 20 (1 line bullets) \n\n Level 2: \n Enemy health = 4 \n Kill Count 20 - 50 (2 line bullets) \n\n Level 3: \n Enemy health = 6 \n Kill Count over 50 (3 line bullets)", X::GetScreenWidth() * 0.2f, yPos + 50.0f, textSize, X::Math::Vector4(1.0f, 2.0f, 0.0f, 1.0f));
 
