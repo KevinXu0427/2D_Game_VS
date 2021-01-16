@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="WinMain.cpp" />
+    <ClCompile Include="BackGroundManager.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="SpriteAnimation.cpp" />
+    <ClCompile Include="AnimationManager.cpp" />
+    <ClCompile Include="InfoList.cpp" />
+    <ClCompile Include="SecondPlayer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BackGroundManager.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="SpriteAnimation.h" />
+    <ClInclude Include="InfoList.h" />
+    <ClInclude Include="AnimationManager.h" />
+    <ClInclude Include="SecondPlayer.h" />
+  </ItemGroup>
+</Project>
