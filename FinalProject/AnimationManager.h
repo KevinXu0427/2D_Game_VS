@@ -33,7 +33,7 @@ public:
 private:
 	Infolist mInfoList;
 	std::unordered_map<AnimationName,SpriteAnimation> mAnimations;
-	SpriteAnimation mAnimation;
-	bool mPlaying{ false };
+	bool mPlaying = false;
 };
+
 #endif // !INCLUDED_ANIMATIONMANAGER_H

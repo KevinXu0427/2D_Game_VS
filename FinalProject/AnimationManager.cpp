@@ -5,27 +5,23 @@ void AnimationManager::CreateAnimationlist(int index)
 	if (index == 1)
 	{
 		mInfoList.CreateList();
-		auto infolist = mInfoList.Getlist();
+		auto& infolist = mInfoList.Getlist();
 		for (int i = 0; i < infolist.size(); i++)
 		{
-			SpriteAnimation temp;
-			temp.Load(infolist[i]);
-			mAnimations.insert({ static_cast<AnimationName>(i), temp });
+			SpriteAnimation& animation = mAnimations[static_cast<AnimationName>(i)];
+			animation.Load(infolist[i]);
 		}
 	}
 	else if (index == 2)
 	{
 		mInfoList.CreateSecondList();
-		auto infolist = mInfoList.GetSecondlist();
+		auto& infolist = mInfoList.GetSecondlist();
 		for (int i = 0; i < infolist.size(); i++)
 		{
-			SpriteAnimation temp;
-			temp.Load(infolist[i]);
-			mAnimations.insert({ static_cast<AnimationName>(i), temp });
+			SpriteAnimation& animation = mAnimations[static_cast<AnimationName>(i)];
+			animation.Load(infolist[i]);
 		}
 	}
-	
-	
 }
 
 void AnimationManager::Play(AnimationName Name, X::Math::Vector2 position)

@@ -13,6 +13,7 @@ bool debug = false;
 
 std::string myBackground[2] = { "audience.png", "boxing_ring.png"};
 std::string myPlayer[2] = { "Boxing_Idle.png", "KO_1.png" };
+std::string endBG[1] = { "audience.png"};
 
 // to fix collision problem
 // bool mIsHitting = false
@@ -103,7 +104,26 @@ void GameLoopStart(float deltaTime)
 void GameLoopEnd(float deltaTime)
 {
 	ShowInfo();
+	bgsetup.Render();
+
+	// Update
+	if (player2Health == 0)
+	{
+		myAnimationManager.Update(deltaTime, AnimationName::Idle);
+		myAnimationManager2.Update(deltaTime, AnimationName::KO);
+		myAnimationManager.Render(AnimationName::Idle);
+		myAnimationManager2.Render(AnimationName::KO);
+	}
+	else if (player1Health == 0)
+	{
+		myAnimationManager.Update(deltaTime, AnimationName::KO);
+		myAnimationManager2.Update(deltaTime, AnimationName::Idle);
+		myAnimationManager.Render(AnimationName::KO);
+		myAnimationManager2.Render(AnimationName::Idle);
+	}
+
 	
+
 }
 
 void ShowInfo()
@@ -156,6 +176,22 @@ void ShowInfo()
 	}
 	case GameState::GameOver:
 	{
+		bgsetup.SetEndgame(true);
+		if (player2Health == 0)
+		{
+			myAnimationManager.Play(AnimationName::Idle, { 200.0f,450.0f });
+			myAnimationManager2.Play(AnimationName::KO, { 1100.0f,450.0f });
+			X::DrawScreenText("Red", 580, 330, 60, X::Math::Vector4::LightRed());
+			X::DrawScreenText("is Winner", 520, 430, 60, X::Math::Vector4::LightRed());
+		}
+		else if(player1Health == 0)
+		{
+			myAnimationManager.Play(AnimationName::KO, { 200.0f,450.0f });
+			myAnimationManager2.Play(AnimationName::Idle, { 1100.0f,450.0f });
+			X::DrawScreenText("Blue", 580, 330, 60, X::Math::Vector4::LightBlue());
+			X::DrawScreenText("is Winner", 520, 430, 60, X::Math::Vector4::LightBlue());
+		}
+
 		ImGui::SetNextWindowPos({ 20.0f,20.0f });
 		ImGui::Begin("PlayerA Info", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
 		ImGui::Text("Player Name: %s", playerName1);
@@ -180,8 +216,7 @@ void ShowInfo()
 		}
 		ImGui::End();
 
-		X::DrawScreenText(winnerName.c_str(), 420, 250, 80, X::Math::Vector4::LightRed());
-		X::DrawScreenText("is Winner", 420, 350, 120, X::Math::Vector4::LightRed());
+		
 
 		break;
 	}

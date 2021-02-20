@@ -36,6 +36,9 @@ void Player::Unload()
 
 void Player::Update(float deltaTime)
 {
+	// Make sure animation is updated first, so we know if we need to change state this frame
+	mAnimations.Update(deltaTime, GetAnimationName(stateMachine));
+
 	switch (stateMachine)
 	{
 	case StateMachine::Idle:
@@ -71,9 +74,6 @@ void Player::Update(float deltaTime)
 	default:
 		break;
 	}
-	
-
-	mAnimations.Update(deltaTime, GetAnimationName(stateMachine));
 }
 
 void Player::Render(bool debug)

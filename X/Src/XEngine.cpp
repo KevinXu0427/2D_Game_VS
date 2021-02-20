@@ -599,8 +599,11 @@ void DrawScreenDiamond(float x, float y, float size, const Math::Vector4& color)
 void DrawScreenText(const char* str, float x, float y, float size, const Math::Vector4& color)
 {
 	XASSERT(initialized, "[XEngine] Engine not started.");
-	static std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
-	myTextCommands.emplace_back(converter.from_bytes(str), size, x, y, ToColor(color));
+	int len = (int)strlen(str);
+	int sizeNeeded = MultiByteToWideChar(CP_UTF8, 0, str, len, NULL, 0);
+	std::wstring wstr(sizeNeeded, 0);
+	MultiByteToWideChar(CP_UTF8, 0, str, len, &wstr[0], sizeNeeded);
+	myTextCommands.emplace_back(std::move(wstr), size, x, y, ToColor(color));
 }
 
 //----------------------------------------------------------------------------------------------------

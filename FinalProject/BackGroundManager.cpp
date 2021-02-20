@@ -32,9 +32,15 @@ void BgSetup::Update(float deltaTime)
 
 void BgSetup::Render()
 {
-	
-	X::DrawSprite(mTextureIds[1], mPositionBgRing);
-	X::DrawSprite(mTextureIds[0], mPositionBg);
+	if (IsEndGame())
+	{
+		X::DrawSprite(mTextureIds[0], mPositionBgRing);
+	}
+	else
+	{
+		X::DrawSprite(mTextureIds[1], mPositionBgRing);
+		X::DrawSprite(mTextureIds[0], mPositionBg);
+	}
 }
 
 void BgSetup::SetScreenInfo(float width, float height)

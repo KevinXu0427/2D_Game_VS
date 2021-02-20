@@ -14,7 +14,9 @@ public:
 	void SetScreenInfo(float width, float height);
 	bool IsStartGame() { return mStart; }
 	void SetScreenStart(bool value) { mLoadFinished = value; }
+	void SetEndgame(bool value) { mIsEnd = value; }
 	bool IsLoadFinished() { return mLoadFinished; }
+	bool IsEndGame() { return mIsEnd; }
 private:
 	std::unique_ptr<X::TextureId[]> mTextureIds;
 	X::Math::Vector2 mPositionBg{ 0,0 };
@@ -22,6 +24,7 @@ private:
 	float mNextFlashTime{ 0 };
 	bool mStart{ false };
 	bool mLoadFinished{ false };
+	bool mIsEnd{ false };
 };
 
 #endif // !INCLUDE_BACKGROUNDMANAGER_H

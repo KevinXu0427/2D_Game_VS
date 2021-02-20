@@ -39,6 +39,8 @@ void SecondPlayer::Unload()
 
 void SecondPlayer::Update(float deltaTime)
 {
+	// Make sure animation is updated first, so we know if we need to change state this frame
+	mAnimations.Update(deltaTime, GetAnimationName(stateMachine));
 	
 	switch (stateMachine)
 	{
@@ -75,8 +77,6 @@ void SecondPlayer::Update(float deltaTime)
 	default:
 		break;
 	}
-
-	mAnimations.Update(deltaTime, GetAnimationName(stateMachine));
 }
 
 void SecondPlayer::Render(bool debug)
